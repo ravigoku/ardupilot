@@ -299,6 +299,24 @@ public:
 };
 
 
+class ModeSpecial : public Mode
+{
+public:
+
+    uint32_t mode_number() const override { return SPECIAL; }
+    const char *name4() const override { return "SPEC"; }
+
+    // methods that affect movement of the vehicle in this mode
+    void update() override;
+
+    // attributes for mavlink system status reporting
+    bool attitude_stabilized() const override { return false; }
+
+    // hold mode does not require GPS
+    bool requires_gps() const override { return false; }
+};
+
+
 class ModeManual : public Mode
 {
 public:
